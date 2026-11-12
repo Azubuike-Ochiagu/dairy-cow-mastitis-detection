@@ -257,3 +257,31 @@ The screenshot below shows the prediction checks passing and the Docker
 container serving the API on port 9696.
 
 ![Docker deployment and prediction checks](deployment-test.png)
+
+
+## Cloud deployment on Render
+
+Interactive API:
+https://dairy-cow-mastitis-detection.onrender.com/docs
+
+Health endpoint:
+https://dairy-cow-mastitis-detection.onrender.com/health
+
+### Deployment steps
+
+1. Create a Render Web Service from this GitHub repository.
+2. Select Docker as the runtime and main as the branch.
+3. Leave the root directory blank.
+4. Set the Dockerfile path to ./Dockerfile.
+5. Select the Free instance.
+6. Add the environment variable PORT=9696.
+7. Set the health check path to /health.
+8. Deploy. The service uses the Dockerfile's default startup command.
+
+To test, open /docs, expand POST /predict, select Try it out,
+and submit the example measurements from this README.
+
+The Free instance sleeps after inactivity, so the first request
+may take about a minute.
+
+![Successful cloud prediction](cloud-deployment.png)
